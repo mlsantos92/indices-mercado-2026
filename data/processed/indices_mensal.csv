@@ -1,0 +1,110 @@
+mes,classe,indice,retorno_pct,previa,fonte
+2025-11,Ações Brasil,IBOV,6.37,False,base
+2025-12,Ações Brasil,IBOV,1.29,False,base
+2026-01,Ações Brasil,IBOV,12.56,False,base
+2026-02,Ações Brasil,IBOV,4.09,False,base
+2026-03,Ações Brasil,IBOV,-0.7,False,base
+2026-04,Ações Brasil,IBOV,-0.08,False,base
+2026-05,Ações Brasil,IBOV,-7.22,False,base
+2026-06,Ações Brasil,IBOV,-1.01,False,base
+2026-07,Ações Brasil,IBOV,3.47,False,base
+2026-08,Ações Brasil,IBOV,-0.33,False,base
+2026-09,Ações Brasil,IBOV,5.03,False,base
+2026-10,Ações Brasil,IBOV,-9.88,False,base
+2025-11,Ações EUA,S&P 500,0.13,False,base
+2025-12,Ações EUA,S&P 500,-0.05,False,base
+2026-01,Ações EUA,S&P 500,1.37,False,base
+2026-02,Ações EUA,S&P 500,-0.87,False,base
+2026-03,Ações EUA,S&P 500,-5.09,False,base
+2026-04,Ações EUA,S&P 500,10.42,False,base
+2026-05,Ações EUA,S&P 500,5.15,False,base
+2026-06,Ações EUA,S&P 500,-1.06,False,base
+2026-07,Ações EUA,S&P 500,-0.13,False,base
+2026-08,Ações EUA,S&P 500,2.62,False,base
+2026-09,Ações EUA,S&P 500,-0.45,False,base
+2026-10,Ações EUA,S&P 500,-0.93,False,base
+2025-11,Dólar,Dólar,-0.94,False,base
+2025-12,Dólar,Dólar,3.16,False,base
+2026-01,Dólar,Dólar,-4.95,False,base
+2026-02,Dólar,Dólar,-1.54,False,base
+2026-03,Dólar,Dólar,1.36,False,base
+2026-04,Dólar,Dólar,-4.42,False,base
+2026-05,Dólar,Dólar,1.37,False,base
+2026-06,Dólar,Dólar,2.37,False,base
+2026-07,Dólar,Dólar,-1.92,False,base
+2026-08,Dólar,Dólar,2.05,False,base
+2026-09,Dólar,Dólar,-0.01,False,base
+2026-10,Dólar,Dólar,4.64,False,base
+2025-11,Imobiliário,IFIX,1.86,False,base
+2025-12,Imobiliário,IFIX,3.14,False,base
+2026-01,Imobiliário,IFIX,2.27,False,base
+2026-02,Imobiliário,IFIX,1.32,False,base
+2026-03,Imobiliário,IFIX,-1.06,False,base
+2026-04,Imobiliário,IFIX,1.53,False,base
+2026-05,Imobiliário,IFIX,-1.33,False,base
+2026-06,Imobiliário,IFIX,-1.21,False,base
+2026-07,Imobiliário,IFIX,-0.32,False,base
+2026-08,Imobiliário,IFIX,-1.46,False,base
+2026-09,Imobiliário,IFIX,-0.2,False,base
+2026-10,Imobiliário,IFIX,-2.89,False,base
+2025-10,Inflação,IPCA,0.09,False,base
+2025-11,Inflação,IPCA,0.18,False,base
+2025-12,Inflação,IPCA,0.33,False,base
+2026-01,Inflação,IPCA,0.33,False,base
+2026-02,Inflação,IPCA,0.7,False,base
+2026-03,Inflação,IPCA,0.88,False,base
+2026-04,Inflação,IPCA,0.67,False,base
+2026-05,Inflação,IPCA,0.58,False,base
+2026-06,Inflação,IPCA,0.16,False,base
+2026-07,Inflação,IPCA,0.07,False,base
+2026-08,Inflação,IPCA,-0.32,False,base
+2026-09,Inflação,IPCA,0.82,False,base
+2025-11,Multimercado,IHFA,1.38,False,base
+2025-12,Multimercado,IHFA,0.54,False,base
+2026-01,Multimercado,IHFA,2.23,False,base
+2026-02,Multimercado,IHFA,1.33,False,base
+2026-03,Multimercado,IHFA,-3.42,False,base
+2026-04,Multimercado,IHFA,2.05,False,base
+2026-05,Multimercado,IHFA,0.62,False,base
+2026-06,Multimercado,IHFA,0.51,False,base
+2026-07,Multimercado,IHFA,-0.19,False,base
+2026-08,Multimercado,IHFA,1.61,False,base
+2026-09,Multimercado,IHFA,2.2,False,base
+2026-10,Multimercado,IHFA,-1.13,False,base
+2025-11,RF Inflação,IMA-B,2.04,False,base
+2025-12,RF Inflação,IMA-B,0.31,False,base
+2026-01,RF Inflação,IMA-B,1.0,False,base
+2026-02,RF Inflação,IMA-B,1.79,False,base
+2026-03,RF Inflação,IMA-B,0.17,False,base
+2026-04,RF Inflação,IMA-B,1.81,False,base
+2026-05,RF Inflação,IMA-B,0.31,False,base
+2026-06,RF Inflação,IMA-B,-1.04,False,base
+2026-07,RF Inflação,IMA-B,0.97,False,base
+2026-08,RF Inflação,IMA-B,1.58,False,base
+2026-09,RF Inflação,IMA-B,3.15,False,base
+2026-10,RF Inflação,IMA-B,-1.03,False,base
+2025-11,RF Pré,IRF-M,1.67,False,base
+2025-12,RF Pré,IRF-M,0.3,False,base
+2026-01,RF Pré,IRF-M,1.96,False,base
+2026-02,RF Pré,IRF-M,0.99,False,base
+2026-03,RF Pré,IRF-M,-0.59,False,base
+2026-04,RF Pré,IRF-M,1.24,False,base
+2026-05,RF Pré,IRF-M,0.68,False,base
+2026-06,RF Pré,IRF-M,0.69,False,base
+2026-07,RF Pré,IRF-M,0.85,False,base
+2026-08,RF Pré,IRF-M,1.04,False,base
+2026-09,RF Pré,IRF-M,2.09,False,base
+2026-10,RF Pré,IRF-M,-1.52,False,base
+2025-11,RF Pós,CDI,1.05,False,base
+2025-12,RF Pós,CDI,1.22,False,base
+2026-01,RF Pós,CDI,1.16,False,base
+2026-02,RF Pós,CDI,1.0,False,base
+2026-03,RF Pós,CDI,1.21,False,base
+2026-04,RF Pós,CDI,1.09,False,base
+2026-05,RF Pós,CDI,1.07,False,base
+2026-06,RF Pós,CDI,1.12,False,base
+2026-07,RF Pós,CDI,1.22,False,base
+2026-08,RF Pós,CDI,1.09,False,base
+2026-09,RF Pós,CDI,1.08,False,base
+2026-10,RF Pós,CDI,1.07,False,base
+2026-10,Inflação,IPCA,0.32,True,base

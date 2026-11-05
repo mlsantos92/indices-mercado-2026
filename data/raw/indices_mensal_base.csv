@@ -1,0 +1,110 @@
+mes,classe,indice,retorno_pct,previa
+2025-11,Ações Brasil,IBOV,6.37,0
+2025-12,Ações Brasil,IBOV,1.29,0
+2026-01,Ações Brasil,IBOV,12.56,0
+2026-02,Ações Brasil,IBOV,4.09,0
+2026-03,Ações Brasil,IBOV,-0.7,0
+2026-04,Ações Brasil,IBOV,-0.08,0
+2026-05,Ações Brasil,IBOV,-7.22,0
+2026-06,Ações Brasil,IBOV,-1.01,0
+2026-07,Ações Brasil,IBOV,3.47,0
+2026-08,Ações Brasil,IBOV,-0.33,0
+2026-09,Ações Brasil,IBOV,5.03,0
+2026-10,Ações Brasil,IBOV,-9.88,0
+2025-11,Ações EUA,S&P 500,0.13,0
+2025-12,Ações EUA,S&P 500,-0.05,0
+2026-01,Ações EUA,S&P 500,1.37,0
+2026-02,Ações EUA,S&P 500,-0.87,0
+2026-03,Ações EUA,S&P 500,-5.09,0
+2026-04,Ações EUA,S&P 500,10.42,0
+2026-05,Ações EUA,S&P 500,5.15,0
+2026-06,Ações EUA,S&P 500,-1.06,0
+2026-07,Ações EUA,S&P 500,-0.13,0
+2026-08,Ações EUA,S&P 500,2.62,0
+2026-09,Ações EUA,S&P 500,-0.45,0
+2026-10,Ações EUA,S&P 500,-0.93,0
+2025-11,Dólar,Dólar,-0.94,0
+2025-12,Dólar,Dólar,3.16,0
+2026-01,Dólar,Dólar,-4.95,0
+2026-02,Dólar,Dólar,-1.54,0
+2026-03,Dólar,Dólar,1.36,0
+2026-04,Dólar,Dólar,-4.42,0
+2026-05,Dólar,Dólar,1.37,0
+2026-06,Dólar,Dólar,2.37,0
+2026-07,Dólar,Dólar,-1.92,0
+2026-08,Dólar,Dólar,2.05,0
+2026-09,Dólar,Dólar,-0.01,0
+2026-10,Dólar,Dólar,4.64,0
+2025-11,Imobiliário,IFIX,1.86,0
+2025-12,Imobiliário,IFIX,3.14,0
+2026-01,Imobiliário,IFIX,2.27,0
+2026-02,Imobiliário,IFIX,1.32,0
+2026-03,Imobiliário,IFIX,-1.06,0
+2026-04,Imobiliário,IFIX,1.53,0
+2026-05,Imobiliário,IFIX,-1.33,0
+2026-06,Imobiliário,IFIX,-1.21,0
+2026-07,Imobiliário,IFIX,-0.32,0
+2026-08,Imobiliário,IFIX,-1.46,0
+2026-09,Imobiliário,IFIX,-0.2,0
+2026-10,Imobiliário,IFIX,-2.89,0
+2025-10,Inflação,IPCA,0.09,0
+2025-11,Inflação,IPCA,0.18,0
+2025-12,Inflação,IPCA,0.33,0
+2026-01,Inflação,IPCA,0.33,0
+2026-02,Inflação,IPCA,0.7,0
+2026-03,Inflação,IPCA,0.88,0
+2026-04,Inflação,IPCA,0.67,0
+2026-05,Inflação,IPCA,0.58,0
+2026-06,Inflação,IPCA,0.16,0
+2026-07,Inflação,IPCA,0.07,0
+2026-08,Inflação,IPCA,-0.32,0
+2026-09,Inflação,IPCA,0.82,0
+2025-11,Multimercado,IHFA,1.38,0
+2025-12,Multimercado,IHFA,0.54,0
+2026-01,Multimercado,IHFA,2.23,0
+2026-02,Multimercado,IHFA,1.33,0
+2026-03,Multimercado,IHFA,-3.42,0
+2026-04,Multimercado,IHFA,2.05,0
+2026-05,Multimercado,IHFA,0.62,0
+2026-06,Multimercado,IHFA,0.51,0
+2026-07,Multimercado,IHFA,-0.19,0
+2026-08,Multimercado,IHFA,1.61,0
+2026-09,Multimercado,IHFA,2.2,0
+2026-10,Multimercado,IHFA,-1.13,0
+2025-11,RF Inflação,IMA-B,2.04,0
+2025-12,RF Inflação,IMA-B,0.31,0
+2026-01,RF Inflação,IMA-B,1.0,0
+2026-02,RF Inflação,IMA-B,1.79,0
+2026-03,RF Inflação,IMA-B,0.17,0
+2026-04,RF Inflação,IMA-B,1.81,0
+2026-05,RF Inflação,IMA-B,0.31,0
+2026-06,RF Inflação,IMA-B,-1.04,0
+2026-07,RF Inflação,IMA-B,0.97,0
+2026-08,RF Inflação,IMA-B,1.58,0
+2026-09,RF Inflação,IMA-B,3.15,0
+2026-10,RF Inflação,IMA-B,-1.03,0
+2025-11,RF Pré,IRF-M,1.67,0
+2025-12,RF Pré,IRF-M,0.3,0
+2026-01,RF Pré,IRF-M,1.96,0
+2026-02,RF Pré,IRF-M,0.99,0
+2026-03,RF Pré,IRF-M,-0.59,0
+2026-04,RF Pré,IRF-M,1.24,0
+2026-05,RF Pré,IRF-M,0.68,0
+2026-06,RF Pré,IRF-M,0.69,0
+2026-07,RF Pré,IRF-M,0.85,0
+2026-08,RF Pré,IRF-M,1.04,0
+2026-09,RF Pré,IRF-M,2.09,0
+2026-10,RF Pré,IRF-M,-1.52,0
+2025-11,RF Pós,CDI,1.05,0
+2025-12,RF Pós,CDI,1.22,0
+2026-01,RF Pós,CDI,1.16,0
+2026-02,RF Pós,CDI,1.0,0
+2026-03,RF Pós,CDI,1.21,0
+2026-04,RF Pós,CDI,1.09,0
+2026-05,RF Pós,CDI,1.07,0
+2026-06,RF Pós,CDI,1.12,0
+2026-07,RF Pós,CDI,1.22,0
+2026-08,RF Pós,CDI,1.09,0
+2026-09,RF Pós,CDI,1.08,0
+2026-10,RF Pós,CDI,1.07,0
+2026-10,Inflação,IPCA,0.32,1
