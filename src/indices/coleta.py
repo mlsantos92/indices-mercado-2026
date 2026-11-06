@@ -2,7 +2,7 @@
 
 Duas fontes:
 1. **Base mensal** (``data/raw/indices_mensal_base.csv``): retornos mensais de
-   9 índices compilados de relatório de mercado. Fica no repositório como
+   10 índices compilados de relatório de mercado (Mais Retorno e IBGE). Fica no repositório como
    ponto de partida reproduzível.
 2. **API SGS do Banco Central** (pública, sem cadastro): CDI, IPCA e dólar
    são baixados direto da fonte oficial e substituem a base quando a API
@@ -31,8 +31,11 @@ URL_SGS = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados"
 CLASSES = {
     "IBOV": "Ações Brasil", "S&P 500": "Ações EUA", "IMA-B": "RF Inflação",
     "CDI": "RF Pós", "IFIX": "Imobiliário", "IRF-M": "RF Pré",
-    "IPCA": "Inflação", "IHFA": "Multimercado", "Dólar": "Dólar",
+    "IPCA": "Inflação", "IHFA": "Multimercado", "Dólar": "Dólar", "BTC": "Bitcoin",
 }
+# O S&P 500 da base é o índice em DÓLAR (price return), sem efeito do câmbio.
+# A versão em reais é derivada: (1 + S&P 500) x (1 + dólar) - 1.
+SP_DOLAR, SP_REAIS = "S&P 500 (US$)", "S&P 500 (R$)"
 
 
 def ler_base(caminho: Path = BASE) -> pd.DataFrame:
@@ -117,7 +120,24 @@ def montar(usar_api: bool = True, verbose: bool = True) -> pd.DataFrame:
     return pd.concat([fica, oficial], ignore_index=True).sort_values(chave).reset_index(drop=True)
 
 
-def em_colunas(longo: pd.DataFrame) -> pd.DataFrame:
-    """Formato largo: meses nas linhas, índices nas colunas (retorno em %)."""
-    largo = longo.pivot(index="mes", columns="indice", values="retorno_pct")
-    return largo[[c for c in CLASSES if c in largo.columns]].astype(float)
+def em_reais(em_dolar: pd.Series, dolar: pd.Series) -> pd.Series:
+    """Retorno (%) de um ativo em dólar para quem investe em reais."""
+    return ((1 + em_dolar / 100) * (1 + dolar / 100) - 1) * 100
+
+
+def em_colunas(longo: pd.DataFrame, sp_reais: bool = True) -> pd.DataFrame:
+    """Formato largo: períodos nas linhas, índices nas colunas (retorno em %).
+
+    O S&P 500 aparece como ``S&P 500 (US$)`` e, com ``sp_reais``, também
+    como ``S&P 500 (R$)``, logo ao lado.
+    """
+    chave = "mes" if "mes" in longo.columns else "ano"
+    largo = longo.pivot(index=chave, columns="indice", values="retorno_pct")
+    largo = largo[[c for c in CLASSES if c in largo.columns]].astype(float)
+    if "S&P 500" in largo.columns:
+        sp = largo.pop("S&P 500")
+        pos = list(CLASSES).index("S&P 500")
+        largo.insert(min(pos, len(largo.columns)), SP_DOLAR, sp)
+        if sp_reais and "Dólar" in largo.columns:
+            largo.insert(min(pos, len(largo.columns)) + 1, SP_REAIS, em_reais(sp, largo["Dólar"]))
+    return largo

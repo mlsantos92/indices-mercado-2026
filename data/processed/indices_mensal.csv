@@ -23,6 +23,18 @@ mes,classe,indice,retorno_pct,previa,fonte
 2026-08,Ações EUA,S&P 500,2.62,False,base
 2026-09,Ações EUA,S&P 500,-0.45,False,base
 2026-10,Ações EUA,S&P 500,-0.93,False,base
+2025-11,Bitcoin,BTC,-17.43,False,base
+2025-12,Bitcoin,BTC,-1.44,False,base
+2026-01,Bitcoin,BTC,-15.66,False,base
+2026-02,Bitcoin,BTC,-15.18,False,base
+2026-03,Bitcoin,BTC,3.02,False,base
+2026-04,Bitcoin,BTC,7.67,False,base
+2026-05,Bitcoin,BTC,-2.56,False,base
+2026-06,Bitcoin,BTC,-18.32,False,base
+2026-07,Bitcoin,BTC,5.38,False,base
+2026-08,Bitcoin,BTC,28.14,False,base
+2026-09,Bitcoin,BTC,5.89,False,base
+2026-10,Bitcoin,BTC,-3.19,False,base
 2025-11,Dólar,Dólar,-0.94,False,base
 2025-12,Dólar,Dólar,3.16,False,base
 2026-01,Dólar,Dólar,-4.95,False,base
@@ -59,6 +71,7 @@ mes,classe,indice,retorno_pct,previa,fonte
 2026-07,Inflação,IPCA,0.07,False,base
 2026-08,Inflação,IPCA,-0.32,False,base
 2026-09,Inflação,IPCA,0.82,False,base
+2026-10,Inflação,IPCA,0.32,True,base
 2025-11,Multimercado,IHFA,1.38,False,base
 2025-12,Multimercado,IHFA,0.54,False,base
 2026-01,Multimercado,IHFA,2.23,False,base
@@ -107,4 +120,3 @@ mes,classe,indice,retorno_pct,previa,fonte
 2026-08,RF Pós,CDI,1.09,False,base
 2026-09,RF Pós,CDI,1.08,False,base
 2026-10,RF Pós,CDI,1.07,False,base
-2026-10,Inflação,IPCA,0.32,True,base

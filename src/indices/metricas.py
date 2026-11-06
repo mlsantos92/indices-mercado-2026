@@ -34,8 +34,14 @@ def max_drawdown(r: pd.Series) -> float:
     return float(((v / v.cummax()) - 1).min() * 100)
 
 
-def resumo(largo: pd.DataFrame, ano: int, inflacao: str = "IPCA", livre_risco: str = "CDI") -> pd.DataFrame:
-    """Tabela-resumo por índice: no ano, 12 meses, real, volatilidade, Sharpe, drawdown."""
+def resumo(largo: pd.DataFrame, ano: int, inflacao: str = "IPCA", livre_risco: str = "CDI",
+           sem_sharpe: tuple[str, ...] = ("S&P 500 (US$)",)) -> pd.DataFrame:
+    """Tabela-resumo por índice: no ano, 12 meses, real, volatilidade, Sharpe, drawdown.
+
+    Sharpe não é calculado para o CDI (é a referência), para a inflação e para
+    índices em outra moeda (``sem_sharpe``): comparar S&P em dólar com CDI em
+    reais misturaria moedas.
+    """
     ultimos12 = largo.tail(12)
     no_ano = largo[largo.index.year == ano]
     ipca_ano, ipca_12 = acumulado(no_ano[inflacao]), acumulado(ultimos12[inflacao])
@@ -46,7 +52,7 @@ def resumo(largo: pd.DataFrame, ano: int, inflacao: str = "IPCA", livre_risco: s
         excesso = (r12 - ultimos12[livre_risco]).dropna()
         vol = r12.std(ddof=1) * np.sqrt(12)
         sharpe = (excesso.mean() / excesso.std(ddof=1) * np.sqrt(12)
-                  if col not in (livre_risco, inflacao) and excesso.std(ddof=1) > 0 else np.nan)
+                  if col not in (livre_risco, inflacao, *sem_sharpe) and excesso.std(ddof=1) > 0 else np.nan)
         linhas.append({
             "indice": col,
             f"no_ano_{ano}": acumulado(no_ano[col]),
