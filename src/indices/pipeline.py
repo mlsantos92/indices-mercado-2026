@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+import pandas as pd
+
 from . import carteira, coleta, graficos, historico, metricas
 
 RAIZ = Path(__file__).resolve().parents[2]
@@ -47,7 +49,9 @@ def main(usar_api: bool = True) -> None:
     ini, fim = int(anuais.index.min()), int(anuais.index.max())
     per = historico.periodo(anuais, meses, ini, fim)
     per.round(2).to_csv(SAIDAS / "acumulado_periodo.csv")
-    anuais.round(2).to_csv(SAIDAS / "retorno_anual.csv")
+    total = per["acumulado_pct"].reindex(anuais.columns)
+    linha_total = pd.DataFrame([total.to_numpy()], columns=anuais.columns, index=[f"Total {ini}–{fim}"])
+    pd.concat([anuais.round(2), linha_total.round(2)]).to_csv(SAIDAS / "retorno_anual.csv")
     historico.tabela_periodica(anuais, ini, fim).to_csv(SAIDAS / "tabela_periodica.csv")
     n_meses = int(meses.sum())
     meta_per = ((1 + per.loc["IPCA", "acumulado_pct"] / 100) * 1.04 ** (n_meses / 12) - 1) * 100
