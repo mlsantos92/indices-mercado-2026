@@ -35,6 +35,17 @@
   <h2 style="font-size:1.1rem">Fechamento anual, 2011 a 2025, e 2026 até o mês atual (retorno %)</h2>
   <div style="overflow-x:auto"><table id="anual"></table></div>
 
+  <h2 style="font-size:1.1rem">Análise por período</h2>
+  <p class="mut">Escolha o período. A volatilidade é o desvio-padrão dos retornos anuais dentro dele (com poucos anos, é só uma referência). Bitcoin só tem dados a partir de 2020.</p>
+  <p>
+    <button type="button" data-anos="5">Últimos 5 anos</button>
+    <button type="button" data-anos="10">Últimos 10 anos</button>
+    <button type="button" data-anos="15">15 anos</button>
+    De <select id="pIni"></select> a <select id="pFim"></select>
+  </p>
+  <div style="overflow-x:auto"><table id="janela"></table></div>
+  <p class="mut" id="volMensal"></p>
+
   <h2 style="font-size:1.1rem">Gráficos</h2>
   <img src="outputs/acumulado_periodo.png" alt="Acumulado do período">
   <img src="outputs/carteira_exemplo.png" alt="Carteira de exemplo">
@@ -64,6 +75,37 @@ tabelaCSV("outputs/resumo.csv", "tabela", { indice: "Índice", no_ano_2026: "No 
   meses_positivos: "Meses positivos" }, "Índice");
 tabelaCSV("outputs/mensal_ano.csv", "mensal", { mes: "Mês" }, "Mês");
 tabelaCSV("outputs/retorno_anual.csv", "anual", {}, "Ano");
+
+fetch("outputs/janelas.json").then(r => r.json()).then(j => {
+  const anos = j.anos;
+  const ini = document.getElementById("pIni"), fim = document.getElementById("pFim");
+  anos.forEach(a => { ini.add(new Option(a, a)); fim.add(new Option(a, a)); });
+  const pct = v => v === null || v === undefined ? "–" : v.toFixed(2).replace(".", ",");
+  function desenhar() {
+    const chave = ini.value + "-" + fim.value;
+    const dados = j.janelas[chave] || {};
+    const nomes = Object.keys(dados);
+    let h = "<thead><tr><th>Ativo</th><th>Acumulado (%)</th><th>Ao ano (%)</th><th>Volatilidade (%)</th><th>Anos</th></tr></thead><tbody>";
+    nomes.forEach(n => {
+      const m = dados[n];
+      h += m ? "<tr><td>" + n + "</td><td>" + pct(m.acum) + "</td><td>" + pct(m.ao_ano) + "</td><td>" + pct(m.vol) + "</td><td>" + m.anos + "</td></tr>" : "";
+    });
+    document.getElementById("janela").innerHTML = h + "</tbody>";
+    const vm = j.vol_mensal_ano || {};
+    document.getElementById("volMensal").textContent = "Volatilidade mensal em " + j.parcial + " (anualizada): " +
+      Object.keys(vm).map(n => n + " " + pct(vm[n]) + "%").join(" · ");
+  }
+  function ajustar(anosPresets) {
+    ini.value = anos[Math.max(0, anos.length - anosPresets)];
+    fim.value = anos[anos.length - 1];
+    desenhar();
+  }
+  document.querySelectorAll("button[data-anos]").forEach(b => b.addEventListener("click", () => ajustar(+b.dataset.anos)));
+  ini.value = anos[0]; fim.value = anos[anos.length - 1];
+  ini.addEventListener("change", () => { if (+ini.value > +fim.value) fim.value = ini.value; desenhar(); });
+  fim.addEventListener("change", () => { if (+fim.value < +ini.value) ini.value = fim.value; desenhar(); });
+  desenhar();
+});
 </script>
 </body>
 </html>

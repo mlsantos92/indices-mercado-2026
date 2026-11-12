@@ -41,7 +41,7 @@ jobs:
       - name: Copiar saídas para o site
         run: |
           mkdir -p docs/outputs
-          cp outputs/*.png outputs/*.csv docs/outputs/
+          cp outputs/*.png outputs/*.csv outputs/*.json docs/outputs/
 
       - name: Gravar alterações
         run: |

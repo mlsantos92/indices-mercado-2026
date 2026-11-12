@@ -8,11 +8,12 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 import pandas as pd
 
-from . import carteira, coleta, graficos, historico, metricas
+from . import carteira, coleta, graficos, historico, janelas, metricas
 
 RAIZ = Path(__file__).resolve().parents[2]
 SAIDAS = RAIZ / "outputs"
@@ -51,7 +52,16 @@ def main(usar_api: bool = True) -> None:
     per.round(2).to_csv(SAIDAS / "acumulado_periodo.csv")
     total = per["acumulado_pct"].reindex(anuais.columns)
     linha_total = pd.DataFrame([total.to_numpy()], columns=anuais.columns, index=[f"Total {ini}–{fim}"])
-    pd.concat([anuais.round(2), linha_total.round(2)]).to_csv(SAIDAS / "retorno_anual.csv")
+    vol_ano = janelas.vol_mensal_no_ano(largo_ano)
+    linha_vol = pd.DataFrame([[vol_ano.get(c) for c in anuais.columns]], columns=anuais.columns,
+                             index=[f"Volatilidade {ano} (mensal, anualizada)"])
+    pd.concat([anuais.round(2), linha_total.round(2), linha_vol.round(2)]).to_csv(SAIDAS / "retorno_anual.csv")
+    (SAIDAS / "janelas.json").write_text(json.dumps({
+        "anos": [int(a) for a in anuais.index],
+        "parcial": ano,
+        "janelas": janelas.por_janela(anuais),
+        "vol_mensal_ano": vol_ano,
+    }, ensure_ascii=False), encoding="utf-8")
     historico.tabela_periodica(anuais, ini, fim).to_csv(SAIDAS / "tabela_periodica.csv")
     n_meses = int(meses.sum())
     meta_per = ((1 + per.loc["IPCA", "acumulado_pct"] / 100) * 1.04 ** (n_meses / 12) - 1) * 100
