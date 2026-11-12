@@ -47,3 +47,19 @@ def vol_mensal_no_ano(largo_ano: pd.DataFrame) -> dict:
     """Volatilidade anualizada dos retornos mensais do ano corrente (desvio × √12)."""
     vol = largo_ano.std(ddof=1) * np.sqrt(12)
     return {col: _arred(v) for col, v in vol.items()}
+
+
+def volatilidade_movel(anuais: pd.DataFrame, n: int | None) -> dict:
+    """Volatilidade dos retornos anuais em cada ano, usando os últimos ``n`` anos
+    até ele (``n=None``: desde o início da série). Chave: ano -> ativo -> %."""
+    anos = list(anuais.index)
+    saida = {}
+    for i, ano in enumerate(anos):
+        inicio = anos[0] if n is None else anos[max(0, i - n + 1)]
+        sub = anuais.loc[inicio:ano]
+        por_ativo = {}
+        for col in anuais.columns:
+            s = sub[col].dropna()
+            por_ativo[col] = _arred(s.std(ddof=1)) if len(s) >= 2 else None
+        saida[int(ano)] = por_ativo
+    return saida

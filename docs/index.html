@@ -46,6 +46,16 @@
   <div style="overflow-x:auto"><table id="janela"></table></div>
   <p class="mut" id="volMensal"></p>
 
+  <h2 style="font-size:1.1rem">Volatilidade ano a ano (desvio dos retornos anuais)</h2>
+  <p class="mut">Em cada ano, a volatilidade calculada sobre os últimos N anos até ele. Com poucos anos, o número oscila bastante.</p>
+  <p>Janela: <select id="vWin">
+    <option value="3">3 anos</option>
+    <option value="5" selected>5 anos</option>
+    <option value="10">10 anos</option>
+    <option value="desde_inicio">Desde 2011</option>
+  </select></p>
+  <div style="overflow-x:auto"><table id="volAno"></table></div>
+
   <h2 style="font-size:1.1rem">Gráficos</h2>
   <img src="outputs/acumulado_periodo.png" alt="Acumulado do período">
   <img src="outputs/carteira_exemplo.png" alt="Carteira de exemplo">
@@ -105,6 +115,20 @@ fetch("outputs/janelas.json").then(r => r.json()).then(j => {
   ini.addEventListener("change", () => { if (+ini.value > +fim.value) fim.value = ini.value; desenhar(); });
   fim.addEventListener("change", () => { if (+fim.value < +ini.value) ini.value = fim.value; desenhar(); });
   desenhar();
+
+  const vw = document.getElementById("vWin");
+  function desenharVol() {
+    const v = j.volatilidade_movel[vw.value] || {};
+    const anosV = Object.keys(v);
+    const nomes = anosV.length ? Object.keys(v[anosV[0]]) : [];
+    let h = "<thead><tr><th>Ano</th>" + nomes.map(n => "<th>" + n + "</th>").join("") + "</tr></thead><tbody>";
+    anosV.forEach(a => {
+      h += "<tr><td>" + a + "</td>" + nomes.map(n => "<td>" + pct(v[a][n]) + "</td>").join("") + "</tr>";
+    });
+    document.getElementById("volAno").innerHTML = h + "</tbody>";
+  }
+  vw.addEventListener("change", desenharVol);
+  desenharVol();
 });
 </script>
 </body>

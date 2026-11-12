@@ -29,3 +29,17 @@ def test_volatilidade_mensal_do_ano_anualizada():
     mensal = pd.DataFrame({"A": [1.0, -1.0, 1.0, -1.0]})
     v = janelas.vol_mensal_no_ano(mensal)
     assert v["A"] == pytest.approx(np.std([1, -1, 1, -1], ddof=1) * np.sqrt(12), abs=0.01)
+
+
+def test_volatilidade_movel_usa_so_os_ultimos_n_anos():
+    anuais = pd.DataFrame({"A": [10.0, -10.0, 20.0, 0.0]}, index=[2011, 2012, 2013, 2014])
+    v = janelas.volatilidade_movel(anuais, 2)
+    assert v[2011]["A"] is None  # só um ano disponível
+    assert v[2013]["A"] == pytest.approx(np.std([-10.0, 20.0], ddof=1), abs=0.01)
+    assert v[2014]["A"] == pytest.approx(np.std([20.0, 0.0], ddof=1), abs=0.01)
+
+
+def test_volatilidade_desde_o_inicio_acumula():
+    anuais = pd.DataFrame({"A": [10.0, -10.0, 20.0]}, index=[2011, 2012, 2013])
+    v = janelas.volatilidade_movel(anuais, None)
+    assert v[2013]["A"] == pytest.approx(np.std([10, -10, 20], ddof=1), abs=0.01)

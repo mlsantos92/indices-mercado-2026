@@ -61,6 +61,8 @@ def main(usar_api: bool = True) -> None:
         "parcial": ano,
         "janelas": janelas.por_janela(anuais),
         "vol_mensal_ano": vol_ano,
+        "volatilidade_movel": {str(k): janelas.volatilidade_movel(anuais, k) for k in (3, 5, 10)}
+        | {"desde_inicio": janelas.volatilidade_movel(anuais, None)},
     }, ensure_ascii=False), encoding="utf-8")
     historico.tabela_periodica(anuais, ini, fim).to_csv(SAIDAS / "tabela_periodica.csv")
     n_meses = int(meses.sum())
