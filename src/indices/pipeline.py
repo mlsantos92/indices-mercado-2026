@@ -27,6 +27,8 @@ def main(usar_api: bool = True) -> None:
     ultimo = largo.index.max().strftime("%m/%Y")
     largo_ano = largo[largo.index.year == ano]
 
+    largo_ano.round(2).rename(index=lambda m: m.strftime("%m/%Y")).rename_axis("mes").to_csv(SAIDAS / "mensal_ano.csv")
+
     res = metricas.resumo(largo, ano)
     res.round(2).to_csv(SAIDAS / "resumo.csv", index=False)
     metricas.acumulado_por_ano(largo).round(2).to_csv(SAIDAS / "acumulado_por_ano.csv")

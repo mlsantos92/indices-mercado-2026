@@ -29,6 +29,12 @@
   <h2 style="font-size:1.1rem">Resumo</h2>
   <div style="overflow-x:auto"><table id="tabela"></table></div>
 
+  <h2 style="font-size:1.1rem">Mês a mês em 2026 (retorno %)</h2>
+  <div style="overflow-x:auto"><table id="mensal"></table></div>
+
+  <h2 style="font-size:1.1rem">Fechamento anual, 2011 a 2025, e 2026 até o mês atual (retorno %)</h2>
+  <div style="overflow-x:auto"><table id="anual"></table></div>
+
   <h2 style="font-size:1.1rem">Gráficos</h2>
   <img src="outputs/acumulado_periodo.png" alt="Acumulado do período">
   <img src="outputs/carteira_exemplo.png" alt="Carteira de exemplo">
@@ -44,16 +50,20 @@ fetch("status.json").then(r => r.json()).then(s => {
   document.getElementById("atualizado").textContent = "Atualizado em " + s.atualizado_em + " (Brasília)";
 }).catch(() => { document.getElementById("selo").textContent = "sem status"; });
 
-fetch("outputs/resumo.csv").then(r => r.text()).then(txt => {
-  const linhas = txt.trim().split("\n").map(l => l.split(","));
-  const [cab, ...corpo] = linhas;
-  const nomes = { indice: "Índice", no_ano_2026: "No ano (%)", real_no_ano: "Real no ano (%)", ult_12m: "12 meses (%)",
-    real_12m: "Real 12m (%)", vol_anual: "Volatilidade (%)", sharpe_12m: "Sharpe 12m", max_drawdown_12m: "Maior queda 12m (%)",
-    meses_positivos: "Meses positivos" };
-  const thead = "<thead><tr>" + cab.map(c => "<th>" + (nomes[c] || c) + "</th>").join("") + "</tr></thead>";
-  const tbody = "<tbody>" + corpo.map(l => "<tr>" + l.map(v => "<td>" + (v === "" ? "–" : v.replace(".", ",")) + "</td>").join("") + "</tr>").join("") + "</tbody>";
-  document.getElementById("tabela").innerHTML = thead + tbody;
-});
+function tabelaCSV(arquivo, destino, nomes, rotulo) {
+  fetch(arquivo).then(r => r.text()).then(txt => {
+    const linhas = txt.trim().split("\n").map(l => l.split(","));
+    const [cab, ...corpo] = linhas;
+    const thead = "<thead><tr>" + cab.map((c, i) => "<th>" + (i === 0 && !c ? rotulo : (nomes[c] || c)) + "</th>").join("") + "</tr></thead>";
+    const tbody = "<tbody>" + corpo.map(l => "<tr>" + l.map(v => "<td>" + (v === "" ? "–" : v.replace(".", ",")) + "</td>").join("") + "</tr>").join("") + "</tbody>";
+    document.getElementById(destino).innerHTML = thead + tbody;
+  }).catch(() => {});
+}
+tabelaCSV("outputs/resumo.csv", "tabela", { indice: "Índice", no_ano_2026: "No ano (%)", real_no_ano: "Real no ano (%)", ult_12m: "12 meses (%)",
+  real_12m: "Real 12m (%)", vol_anual: "Volatilidade (%)", sharpe_12m: "Sharpe 12m", max_drawdown_12m: "Maior queda 12m (%)",
+  meses_positivos: "Meses positivos" }, "Índice");
+tabelaCSV("outputs/mensal_ano.csv", "mensal", { mes: "Mês" }, "Mês");
+tabelaCSV("outputs/retorno_anual.csv", "anual", {}, "Ano");
 </script>
 </body>
 </html>
