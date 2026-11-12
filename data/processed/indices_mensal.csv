@@ -119,6 +119,6 @@ mes,classe,indice,retorno_pct,previa,fonte
 2026-10,Imobiliário,IFIX,-2.89,False,base
 2026-10,Multimercado,IHFA,-1.13,False,base
 2026-10,RF Inflação,IMA-B,-1.03,False,base
-2026-10,Inflação,IPCA,0.32,True,base
+2026-10,Inflação,IPCA,0.14,False,BCB/SGS
 2026-10,RF Pré,IRF-M,-1.52,False,base
 2026-10,Ações EUA,S&P 500,-0.93,False,base
