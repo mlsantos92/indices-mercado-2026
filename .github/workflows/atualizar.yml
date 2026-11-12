@@ -1,0 +1,52 @@
+name: Atualizar índices diariamente
+
+on:
+  schedule:
+    # 08:30 e 19:00 em Brasília (11:30 e 22:00 UTC), de segunda a sexta
+    - cron: "30 11 * * 1-5"
+    - cron: "0 22 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Testes
+        id: testes
+        run: pytest -q
+        continue-on-error: true
+
+      - name: Rodar pipeline (API do BCB, com fallback para a base)
+        run: python -m indices.pipeline
+
+      - name: Selo de situação
+        env:
+          TESTES_OK: ${{ steps.testes.outcome == 'success' && '1' || '0' }}
+        run: python -m indices.selo
+
+      - name: Copiar saídas para o site
+        run: |
+          mkdir -p docs/outputs
+          cp outputs/*.png outputs/resumo.csv docs/outputs/
+
+      - name: Gravar alterações
+        run: |
+          git config user.name "atualizacao-automatica"
+          git config user.email "noreply@github.com"
+          git add outputs data/processed docs
+          git diff --cached --quiet || git commit -m "Atualiza índices e selo ($(date -u +%Y-%m-%d))"
+          git push

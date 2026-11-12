@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Índices de mercado 2026</title>
+<style>
+  :root { --fg:#1f2328; --mut:#656d76; --bg:#ffffff; --line:#d0d7de; --verde:#1a7f37; --amarelo:#9a6700; --vermelho:#cf222e; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fg:#e6edf3; --mut:#9198a1; --bg:#0d1117; --line:#30363d; --verde:#3fb950; --amarelo:#d29922; --vermelho:#f85149; } }
+  :root[data-theme="dark"] { --fg:#e6edf3; --mut:#9198a1; --bg:#0d1117; --line:#30363d; --verde:#3fb950; --amarelo:#d29922; --vermelho:#f85149; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, sans-serif; }
+  main { max-width:960px; margin:0 auto; padding:16px; }
+  h1 { font-size:1.4rem; margin:.2rem 0 .4rem; }
+  .selo { display:inline-block; padding:4px 10px; border-radius:999px; color:#fff; font-weight:600; }
+  table { width:100%; border-collapse:collapse; font-size:14px; margin:12px 0; }
+  th, td { padding:6px 8px; border-bottom:1px solid var(--line); text-align:right; }
+  th:first-child, td:first-child { text-align:left; }
+  img { max-width:100%; height:auto; margin:8px 0; }
+  .mut { color:var(--mut); font-size:13px; }
+  @media (max-width:600px) { table { font-size:12px; } th, td { padding:4px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Índices de mercado 2026</h1>
+  <p><span id="selo" class="selo">carregando…</span> <span id="motivo" class="mut"></span></p>
+  <p class="mut" id="atualizado"></p>
+
+  <h2 style="font-size:1.1rem">Resumo</h2>
+  <div style="overflow-x:auto"><table id="tabela"></table></div>
+
+  <h2 style="font-size:1.1rem">Gráficos</h2>
+  <img src="outputs/acumulado_periodo.png" alt="Acumulado do período">
+  <img src="outputs/carteira_exemplo.png" alt="Carteira de exemplo">
+  <img src="outputs/sharpe_mercado.png" alt="Sharpe comparado">
+</main>
+<script>
+const CORES = { verde: "var(--verde)", amarelo: "var(--amarelo)", vermelho: "var(--vermelho)" };
+fetch("status.json").then(r => r.json()).then(s => {
+  const el = document.getElementById("selo");
+  el.textContent = s.cor === "verde" ? "Verde" : s.cor === "amarelo" ? "Amarelo" : "Vermelho";
+  el.style.background = CORES[s.cor] || "#656d76";
+  document.getElementById("motivo").textContent = s.motivo;
+  document.getElementById("atualizado").textContent = "Atualizado em " + s.atualizado_em + " (Brasília)";
+}).catch(() => { document.getElementById("selo").textContent = "sem status"; });
+
+fetch("outputs/resumo.csv").then(r => r.text()).then(txt => {
+  const linhas = txt.trim().split("\n").map(l => l.split(","));
+  const [cab, ...corpo] = linhas;
+  const nomes = { indice: "Índice", no_ano_2026: "No ano (%)", real_no_ano: "Real no ano (%)", ult_12m: "12 meses (%)",
+    real_12m: "Real 12m (%)", vol_anual: "Volatilidade (%)", sharpe_12m: "Sharpe 12m", max_drawdown_12m: "Maior queda 12m (%)",
+    meses_positivos: "Meses positivos" };
+  const thead = "<thead><tr>" + cab.map(c => "<th>" + (nomes[c] || c) + "</th>").join("") + "</tr></thead>";
+  const tbody = "<tbody>" + corpo.map(l => "<tr>" + l.map(v => "<td>" + (v === "" ? "–" : v.replace(".", ",")) + "</td>").join("") + "</tr>").join("") + "</tbody>";
+  document.getElementById("tabela").innerHTML = thead + tbody;
+});
+</script>
+</body>
+</html>
