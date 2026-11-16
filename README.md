@@ -1,5 +1,8 @@
 # Índices de mercado: quem venceu a inflação, em 2026 e em 15 anos?
 
+[![Atualização diária](https://github.com/mlsantos92/indices-mercado-2026/actions/workflows/atualizar.yml/badge.svg)](https://github.com/mlsantos92/indices-mercado-2026/actions/workflows/atualizar.yml)
+**[Ver painel ao vivo](https://mlsantos92.github.io/indices-mercado-2026/)** · CDI, IPCA e dólar atualizados pela API do Banco Central em dias úteis às 08h30 e 19h, com selo de situação, mês a mês de 2026, fechamento anual desde 2011 e análise por período.
+
 Análise de **retorno e risco** de 10 índices que representam as principais classes de ativos de um investidor brasileiro: renda fixa pós, pré e inflação, ações Brasil e EUA, fundos imobiliários, multimercados, dólar, Bitcoin e a própria inflação. O S&P 500 aparece **em dólar e em reais**. Por cima dos índices, uma **carteira teórica** com taxa do cliente, aportes anuais e Sharpe comparado ao mercado.
 
 ![Acumulado de 2011 a 2026](outputs/acumulado_periodo.png)
