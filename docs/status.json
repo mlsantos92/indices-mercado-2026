@@ -1,9 +1,9 @@
 {
- "cor": "amarelo",
- "motivo": "dólar até 23/11, CDI até 19/11; esperado 23/11",
- "pregao_esperado": "2026-11-23",
- "dolar_ate": "2026-11-23",
- "cdi_ate": "2026-11-19",
+ "cor": "verde",
+ "motivo": "dados do BCB do último dia útil e testes passando",
+ "pregao_esperado": "2026-11-24",
+ "dolar_ate": "2026-11-24",
+ "cdi_ate": "2026-11-23",
  "testes": "ok",
- "atualizado_em": "2026-11-24 02:46"
+ "atualizado_em": "2026-11-24 18:25"
 }
