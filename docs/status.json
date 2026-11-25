@@ -1,9 +1,9 @@
 {
- "cor": "verde",
- "motivo": "dados do BCB do último dia útil e testes passando",
+ "cor": "vermelho",
+ "motivo": "API do BCB indisponível ou testes falharam",
  "pregao_esperado": "2026-11-24",
- "dolar_ate": "2026-11-24",
- "cdi_ate": "2026-11-23",
+ "dolar_ate": null,
+ "cdi_ate": null,
  "testes": "ok",
- "atualizado_em": "2026-11-24 18:25"
+ "atualizado_em": "2026-11-25 01:48"
 }
