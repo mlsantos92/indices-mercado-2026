@@ -1,9 +1,9 @@
 {
  "cor": "verde",
  "motivo": "dados do BCB do último dia útil e testes passando",
- "pregao_esperado": "2026-11-26",
+ "pregao_esperado": "2026-11-27",
  "dolar_ate": "2026-11-27",
  "cdi_ate": "2026-11-26",
  "testes": "ok",
- "atualizado_em": "2026-11-27 17:06"
+ "atualizado_em": "2026-11-28 00:45"
 }
